@@ -36,15 +36,15 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	/*@Autowired
 	private CustomAuthenticationProvider customAuthenticationProvider;*/
-	/*@Autowired
+	@Autowired
 	private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 	@Autowired
 	private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
-	@Autowired
-	private CustomAuthenticationProvider customAuthenticationProvider;
+	/*@Autowired
+	private CustomAuthenticationProvider customAuthenticationProvider;*/
 	
-	@Autowired
-	private UserDetailsService userDetailsService;
+	/*@Autowired
+	private UserDetailsService userDetailsService;*/
 	
 	
 	@Override
@@ -58,7 +58,7 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		            response.getWriter().print("{\"status\": \"901\" , \"message\":\" session invalid.\"}");
 		            response.getWriter().flush();
 		        } else {
-		            response.sendRedirect("/khmoney/login");
+		            response.sendRedirect("/login");
 		        }
 		    });
 		 
@@ -75,7 +75,7 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.passwordParameter("password")
 				.failureUrl("/login?error")
 				//.successForwardUrl("/home")
-				//.successHandler(ajaxAuthenticationSuccessHandler)
+				.successHandler(ajaxAuthenticationSuccessHandler)
 				.failureHandler(ajaxAuthenticationFailureHandler)
 				.permitAll()
 			.and()
@@ -86,7 +86,7 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 			
 			//.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 	}
-	*/
+	
 	/*@Bean
 	public AuthenticationEntryPoint loginUrlauthenticationEntryPoint(){
 	    return new LoginUrlAuthenticationEntryPoint("/userLogin");
