@@ -34,8 +34,8 @@ import kh.com.loan.utils.KHRTException;
 @Order(1)
 public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-	/*@Autowired
-	private CustomAuthenticationProvider customAuthenticationProvider;*/
+	@Autowired
+	private CustomAuthenticationProvider customAuthenticationProvider;
 	@Autowired
 	private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 	@Autowired
@@ -97,9 +97,9 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    return new LoginUrlAuthenticationEntryPoint("/userLoginWithWarning");
 	}
 	*/
-	/*@Override
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
+		/*auth
 			.inMemoryAuthentication()
 				.withUser("user").password("123").roles("USER")
 				.and()
@@ -107,11 +107,11 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 		
 		auth.userDetailsService(userDetailsService)
-			.passwordEncoder(passwordEncoder());
+			.passwordEncoder(passwordEncoder());*/
 				
 		auth.authenticationProvider(this.customAuthenticationProvider);
-		
-	}*/
+
+	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
