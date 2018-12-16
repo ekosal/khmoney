@@ -1,0 +1,79 @@
+.jconfirm .jconfirm-box .jconfirm-buttons button{
+	display:inline-block;margin-left:10px;padding:0 20px;font-family:"Khmer OS Battambang","Khmer OS Bokor", "Khmer OS Content", "Khmer OS Siemreap", "Khmer OS System";font-size:14px;color:#fff;line-height:30px;background-color:#4284F9;border-radius:3px;
+}
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons{
+	text-align:center;
+	float:none;
+	padding: 5px 0px 0px 0px;
+	border-top: 1px solid #666;
+}
+.jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{
+	border-radius:0px;
+}
+.jconfirm .jconfirm-box {
+   padding: 0px; 
+}
+.jconfirm .jconfirm-box div.jconfirm-title-c{
+	padding: 7px 35px;
+	font-size: 18px;
+    color: #fff;
+    text-align: left;
+    line-height: 30px;
+    background-image: url(../img/icon/ico_alert.png);
+    background-repeat: no-repeat;
+    background-position: 11px 11px;
+    background-size: 20px auto;
+	border-bottom: 1px solid #666;
+	background-color: #203864;
+	font-size: 18px;
+    color: #fff;
+    font-family:"Khmer OS Battambang","Khmer OS Bokor", "Khmer OS Content", "Khmer OS Siemreap", "Khmer OS System";
+   
+}
+.jconfirm .jconfirm-box.jconfirm-type-green{
+	 border-top: none; 
+}
+.jconfirm-closeIcon{
+	 color: #fff;
+}
+.jconfirm.jconfirm-light .jconfirm-bg{
+	opacity:0.8;
+	
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane {
+    min-height: 60px;
+    box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	background: white;
+	width: 100%;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane div.jconfirm-content{
+	 background-image: url(../img/icon/ico_alert_sms.png); 
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 30px auto;
+    min-height: 60px;
+    margin:10px 0 0 10px;
+   
+}
+
+.jconfirm .jconfirm-box div.jconfirm-content-pane div.jconfirm-content-comfirm{
+	background-image: url(../img/icon/warning.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 30px auto;
+    min-height: 60px;
+    margin:10px 0 0 10px;
+   
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane div.jconfirm-content div{
+	 padding:0px 5px 0px 45px;
+	font-family:"Khmer OS Battambang","Khmer OS Bokor", "Khmer OS Content", "Khmer OS Siemreap", "Khmer OS System";
+	line-height: 30px;
+}
+.jconfirm .jconfirm-box div.jconfirm-closeIcon {
+	 color: #fff;
+    top: 12px;
+   
+}
