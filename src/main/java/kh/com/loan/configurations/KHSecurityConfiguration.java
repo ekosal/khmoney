@@ -34,8 +34,8 @@ import kh.com.loan.utils.KHRTException;
 @Order(1)
 public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-	@Autowired
-	private CustomAuthenticationProvider customAuthenticationProvider;
+	/*@Autowired
+	private CustomAuthenticationProvider customAuthenticationProvider;*/
 	@Autowired
 	private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 	@Autowired
@@ -109,7 +109,7 @@ public class KHSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		auth.userDetailsService(userDetailsService)
 			.passwordEncoder(passwordEncoder());*/
 				
-		auth.authenticationProvider(this.customAuthenticationProvider);
+		/*auth.authenticationProvider(this.customAuthenticationProvider);*/
 
 	}
 
