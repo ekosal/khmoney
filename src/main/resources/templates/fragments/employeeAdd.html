@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Insert title here</title>
+<meta charset="utf-8">
+</head>
+<body>
+<!-- popup form -->
+<div class="alert_wrap frm" id="popup_employee" style="display:none;" th:fragment="popup_employee">
+	<div class="alert_inner" style="top:40% !important;">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">
+			<!-- table input popup -->
+			<div class="tbl_input_pop" style="padding-top: 0px !important;">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:150px;">
+					<col>
+					<col>
+					<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th><div>ឈ្មោះបុគ្គលិក</div></th>
+							<td colspan="3"><div>
+									
+									<input type="text" value="" name="" id="emp_name" placeholder=""maxlength="50" required="required">
+							</div></td>
+						</tr>					
+						<tr>
+							<th><div>ភេទ</div></th>
+							<td>
+								<div>
+									<label><input type="radio" id="male" name="gender" value="M" checked> ប្រុស</label> &nbsp;&nbsp;&nbsp;
+									<label><input type="radio" id="female" name="gender" value="F"> ស្រី</label>
+								</div>
+							</td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>លេខទូរស័ព្ទ</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_phone" required="required" maxlength="12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>អ៊ីមែល</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_email" required="required" maxlength="50"></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>អាស័យដ្ឋាន</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_address" required="required" maxlength="100"></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>រូបថត</div></th>
+							<td colspan="3"><div>
+								 <img alt="photo" id="photo" th:src="@{/img/images/default_logo.png}" width="64" height="64"> 
+								<input type="file" name="file" placeholder=""​​ id="file">
+							</div></td>
+						</tr>
+						<tr style="display:;" id="department">
+							<th><div>Department</div></th>
+							<td colspan="3"><div>
+								<label><input type="checkbox" >HR Human Resource</label> 
+								<label><input type="checkbox" >HR Human Resource</label> 
+							</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- table input dot -->
+				<div class="tbl_input_pop" id="user_infor">
+					<table summary="">
+						<caption></caption>
+						<colgroup>
+						<col style="width:150px;">
+						<col>
+						<col>
+						<col>
+					</colgroup>
+						<tbody>
+							<tr>
+								<th><div>ឈ្មោះសំរាប់ចូលប្រើប្រព័ន្ធ</div></th>
+								<td colspan="3"><div><input type="text" value="" name="user_name" id="user_name" placeholder="" maxlength="50" required="required"></div></td>
+								
+							</tr>
+							<tr>
+								<th><div>ពាក្យសំងាត់</div></th>
+								<td colspan="3"><div><input type="password" value="" name="password" id="password" placeholder="" maxlength="20" required="required" style="width: 100%;"></div></td>
+								
+							</tr>
+							<tr>
+								<th><div>បញ្ជាក់ពាក្យសម្ងាត់</div></th>
+								<td colspan="3"><div>
+									<input type="password" value="" name="confirm_password" id="confirm_password" placeholder="" maxlength="20" required="required" style="width: 100%;">
+								</div></td>
+							</tr>
+		
+						</tbody>
+					</table>
+				</div>
+				<!-- //table input dot -->
+				
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_save">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>	
+	
+</div>
+<!-- //popup form -->
+<!-- popup form -->
+<div class="alert_wrap frm" id="popup_employee_edit" style="display:none;" th:fragment="popup_employee_edit">
+	<div class="alert_inner">
+		<div class="alert_tit">
+			<h1>កែប្រែពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">
+			<!-- table input popup -->
+			<div class="tbl_input_pop">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:150px;">
+					<col>
+					<col>
+					<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th><div>ឈ្មោះបុគ្គលិក</div></th>
+							<td colspan="3"><div>	
+							  		<input type="hidden" value="" name="" id="emp_edit_id" placeholder="" required="required">						
+									<input type="text" value="" name="" id="emp_edit_name" placeholder="" required="required">
+							</div></td>
+						</tr>					
+						<tr>
+							<th><div>ភេទ</div></th>
+							<td>
+								<div>
+									<label><input type="radio" id="edit_male" name="edit_gender" value="M" checked> ប្រុស</label> &nbsp;&nbsp;&nbsp;
+									<label><input type="radio" id="edit_female" name="edit_gender" value="F"> ស្រី</label>
+								</div>
+							</td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>លេខទូរស័ព្ទ</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_edit_phone" required="required" maxlength="12" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>អ៊ីមែល</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_edit_email" required="required"></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>អាស័យដ្ឋាន</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="emp_edit_address" required="required"></div></td>
+						</tr>
+						<tr style="display:;" id="">
+							<th><div>រូបថត</div></th>
+							<td colspan="3"><div>
+								 <img alt="photo" id="edit_photo" th:src="@{/img/images/default_logo.png}" width="64" height="64"> 
+								<input type="file" name="edit_file" placeholder=""​​ id="edit_file">
+							</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_edit">កែប្រែ</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>	
+	
+</div>
+<!-- //popup form -->
+<!-- popup form -->
+<div class="alert_wrap frm" id="popup_employee_change_password" style="display:none;" th:fragment="popup_employee_change_password">
+	<div class="alert_inner">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">			
+			<!-- table input dot -->
+				<div class="tbl_input_pop" id="user_infor">
+					<table summary="">
+						<caption></caption>
+						<colgroup>
+						<col style="width:150px;">
+						<col>
+						<col>
+						<col>
+					</colgroup>
+						<tbody>
+							<tr>
+								<th><div>ពាក្យសំងាត់ចាស់</div></th>
+								<td colspan="3"><div><input type="password" value="" name="password" id="p_password" placeholder="" required="required" style="width: 100%;"></div></td>
+								
+							</tr>
+							<tr>
+								<th><div>ពាក្យសំងាតថ្មី</div></th>
+								<td colspan="3"><div>
+									<input type="password" value="" name="confirm_password" id="p_new_password" placeholder="" required="required" style="width: 100%;">
+								</div></td>
+							</tr>
+							<tr>
+								<th><div>បញ្ជាក់ពាក្យសំងាតថ្មី</div></th>
+								<td colspan="3"><div>
+									<input type="password" value="" name="confirm_password" id="p_new_confirm_password" placeholder="" required="required" style="width: 100%;">
+								</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- //table input dot -->				
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_save_password">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>		
+</div>
+<!-- popup form -->
+<div class="alert_wrap frm" id="popup_employee_permission" style="display:none;" th:fragment="popup_employee_permission">
+	<div class="alert_inner">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">			
+			<!-- table input dot -->
+				<div class="tbl_lst1 mgt5" id="user_permission">
+					<table summary="">
+						<caption></caption>
+						<colgroup>
+						<col style="width:150px;">
+						<col>
+						<col>
+						<col>
+					</colgroup>
+						<tbody>
+	
+						</tbody>
+					</table>
+				</div>
+				<!-- //table input dot -->				
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_save_permission">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>		
+</div>
+</body>
+</html>

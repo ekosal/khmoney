@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<!-- footer -->
+	<div class="lnb_wrap" th:fragment="left_menu">
+		<ul>
+			<li ><a th:href="@{/}">ទំព័រដើម</a></li>
+			 <li th:each="menu : ${#authentication.principal.menus}"> 
+			      <a th:href="@{${menu.url}}" th:text="${menu.menu_name}"></a>
+			 	  <ul>
+						 <li th:each="permission : ${#authentication.principal.permissions}" th:if="${permission.sts == '1' AND  permission.menu.menu_id == menu.menu_id}"> 
+							 <a th:href="@{${permission.http_path}}" th:text="${permission.name}"></a>
+						 </li> 
+					
+					</ul>
+			 </li> 		
+		</ul>
+	</div>
+	<!-- //footer -->
+ 
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!--  <head lang="en" th:replace="fragments/head :: head"><meta charset="utf-8"/></head> -->
+
+
+<body class="lnb_bg">
+
+<div class="wrap">
+
+	<!-- header -->
+	<!-- <div class="header">
+		<div class="f_left cboth">
+			<h1 class="logo"><a th:href="@{/}"><img th:src="@{../img/logo/piggy-bank.png}" alt="LAON"/></a></h1>
+		</div>
+	</div> -->
+	<!-- //header -->
+
+	<form th:action="@{/login}" th:method="POST" id="frm-login">
+	<!-- content wrap -->
+	<div class="content">
+		<div class="cnt_wrap">
+			<div class="login_form">
+				<fieldset>
+					<legend>LOGIN</legend>
+					<ul>
+						<li>
+							<label>ឈ្មោះអ្នកប្រើប្រាស់</label>
+							<input type="text" name="username" placeholder="បញ្ចូលឈ្មោះអ្នកប្រើប្រាស់" required="required"/>
+						</li>
+						<li>
+							<label>លេខសម្ងាត់អ្នកប្រើប្រាស់</label>
+							<input type="password" name="password" placeholder="បញ្ចូលលេខសម្ងាត់" required="required"/>
+						</li>
+						<!-- <li class="t_right"><a href="#none" class="btn_forget">ភ្លេចលេខសម្ងាត់?</a></li> -->
+						<li class="">
+							<a href="javascript:" class="btn_login" id="btnLogin">ចូលប្រើ</a>&nbsp;&nbsp;
+							<!-- <a href="javascript:" class="btn_cancel">ចាកចេញ</a> -->
+						</li>
+						<li class="">
+							<a th:href="@{/register}" class="btn_login" id="btnLogin">register</a>&nbsp;&nbsp;
+							<!-- <a href="javascript:" class="btn_cancel">ចាកចេញ</a> -->
+						</li>
+					</ul>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<!-- //content wrap -->
+	</form>
+	<!-- footer -->
+	<div lang="en" th:replace="fragments/footer :: footer"> </div>
+	<!-- //footer -->
+
+	
+</div>
+
+
+
+<!-- alert comfirm -->
+<div class="alert_wrap" style="display:none;">
+	<div class="alert_inner">
+		<div class="alert_tit">
+			<h1>ពត័មាន</h1>
+		</div>
+		<div class="aler_cnt">
+			<p>ប្រតិបត្តិការរក្សាទុកទទួលបានជោគជ័យ</p>
+		</div>
+		<div class="t_line">
+			<a href="#none" class="btn_confirm">យល់ព្រម</a>
+		</div>
+	</div>	
+</div>
+	<script src="../demo/js/lib/jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#btnLogin').click(function(){
+				$('#frm-login').submit();
+			});
+			$('#frm-login').submit(function(e) {
+				var frm = $('#frm-login');
+				e.preventDefault();
+				var data = {};
+
+				$.each(this,function(i,v){
+					var input = $(v);
+					data[input.attr("name")] = input.val();
+					delete(data["undefined"])
+				});
+				console.log(data);
+		        $.ajax({
+		            type: frm.attr('method'),
+		            url: frm.attr('action'),
+		            data : data,
+		            success : function(json){
+		            	var result = $.parseJSON(json);
+		            	console.log(result);
+						/*if ( result['status'] == '0000'){
+		            		window.location.href =  result['result'];
+		            	} */
+		            	if (result['status'] == '9999'){
+		            		alert(result['message']);
+		            	}else if (result['status'] == '0000'){
+		            		window.location.href = result['message'];
+		            	}
+		            	           	
+		            },
+		            error : function(){
+		               console.log('error');
+		            }
+		        });
+		        
+			});
+		});
+	</script>
+</body>
+</html>

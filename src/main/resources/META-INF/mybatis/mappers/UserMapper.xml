@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kh.com.loan.mappers.UserMapper">
+
+	<resultMap type="kh.com.loan.domains.User" id="userResult">
+	    <id     column="user_id"   property="user_id"/>
+	    <result column="user_code" property="user_code"/>
+	    <result column="user_full_name" property="full_name"/>
+	    <result column="user_gender"    property="gender"/>
+	    <result column="user_phone_nm"  property="phone_nm"/>
+	    <result column="user_email"     property="email"/>
+	    <result column="user_address"   property="address"/>
+	    <result column="user_username"  property="username"/>
+	    <result column="user_password"  property="password"/>
+	    <result column="user_modify_by" property="modify_by"/>
+	    <result column="user_modify_dt" property="modify_dt"/>
+	    <result column="user_photo"     property="photo"/>
+	    <result column="user_sts"       property="sts"/>
+	    <association  property="company" javaType="kh.com.loan.domains.Company" resultMap="comMap"/>
+
+	</resultMap>
+	
+	
+	<resultMap id="comMap" type="kh.com.loan.domains.Company">
+		<id     property="com_id"                column="com_id"                />
+		<result property="com_name"              column="com_name"              />
+		<result property="com_ph_num"            column="com_ph_num"            />
+		<result property="com_email"             column="com_email"             />
+		<result property="com_address"           column="com_address"           />
+		<result property="com_website_address"   column="com_website_address"   />
+		<result property="com_sts"               column="com_sts"               />
+		<result property="com_reg_dt"            column="com_reg_dt"            />
+		<result property="com_logo"              column="com_logo"              />
+	</resultMap>
+	
+   <select id="loadUserByUsername" resultMap="userResult" parameterType="java.lang.String">
+    	SELECT 
+    		  user_id     as user_id
+    		, com_id      as com_id
+    		, user_code   as user_code
+    		, full_name   as user_full_name
+    		, gender      as user_gender
+    		, phone_nm    as user_phone_nm
+    		, email       as user_email
+    		, address     as user_address
+    		, username    as user_username
+    		, password    as user_password
+    		, modify_by   as user_modify_by
+    		, modify_dt   as user_modify_dt
+    		, photo       as user_photo
+    		, sts         as user_sts
+		  FROM ld_user_info
+		  WHERE 1=1	AND username = #{username} AND sts != '9'
+	  </select>
+	  <select id="loadingAllUser" resultMap="userResult" parameterType="kh.com.loan.domains.User">
+	  	SELECT 
+    		  user_id     as user_id
+    		, com_id      as com_id
+    		, user_code   as user_code
+    		, full_name   as user_full_name
+    		, gender      as user_gender
+    		, phone_nm    as user_phone_nm
+    		, email       as user_email
+    		, address     as user_address
+    		, photo       as user_photo
+    		, sts         as user_sts
+		  FROM ld_user_info
+		  WHERE 1=1 AND sts != '9' and com_id = #{company.com_id}
+		  LIMIT #{pagination.per_page}  offset #{pagination.offset} 
+	  </select>
+	   <select id="loadingCountAllUser" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+	  	SELECT 
+    		 COUNT(*) as count
+		FROM ld_user_info
+		  WHERE 1=1 AND sts != '9' and com_id = #{comId}
+	  </select>
+	  
+	  <insert id="insertNewUser" parameterType="kh.com.loan.domains.User" useGeneratedKeys="true" keyColumn="user_id" keyProperty="user_id">
+	  		INSERT INTO ld_user_info(
+		              com_id
+		            , user_code
+		            , full_name
+		            , gender
+		            , phone_nm
+		            , email
+		            , address
+		            , username
+		            , password
+		            , sts
+		            , photo
+		            , modify_by
+		            , modify_dt
+		            , action
+		            )
+		    VALUES (
+		    		  #{company.com_id}
+		    		, #{user_code}
+		    		, #{full_name}
+		    		, #{gender}
+		    		, #{phone_nm}
+		    		, #{email}
+		    		, #{address}
+		    		, #{username}
+		    		, #{password}
+		    		, #{sts}
+		    		, #{photo}
+		    		, #{modify_by}
+		    		, #{modify_dt}
+		    		, #{action}
+		    		
+		    		);
+	  	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="user_id">
+	         SELECT last_value FROM ld_user_info_user_id_seq;
+	    </selectKey>
+	  </insert>
+	  
+	<!--   <insert id="insertUserRoles" parameterType="java.lang.Integer">
+	  		INSERT INTO ld_user_roles(
+    					    user_id
+    					  , role_id
+                         )
+                     VALUES(
+                          #{userId}
+                     	, #{roleId}
+                     )
+                                       
+	  </insert> -->
+	<!--   <insert id="insertUserMenuPermission" parameterType="java.util.HashMap">
+	  		INSERT INTO ld_user_permissions(role_id,per_id,menu_id,user_id,orders,sts)
+			SELECT DISTINCT role_id,per_id,menu_id,cast(#{userId} as int),0,'1' FROM ld_role_menu_permission WHERE role_id in
+			<foreach collection="roleId" item="element" index="index" open="(" separator=","  close=")">
+		         cast(#{element} as int)		        
+		    </foreach>                      
+	  </insert> -->
+	 <!--  <insert id="insertUserPermission" parameterType="java.util.HashMap">
+	  		INSERT INTO ld_user_permission(per_id,user_id,sts)
+			SELECT DISTINCT per_id,cast(#{userId} as int),'1' FROM ld_role_menu_permission WHERE role_id in
+			<foreach collection="roleId" item="element" index="index" open="(" separator=","  close=")">
+		         cast(#{element} as int)
+		    </foreach>                      
+	  </insert>
+	  <insert id="insertUserMenu" parameterType="java.util.HashMap">
+	  		INSERT INTO ld_user_menu(menu_id,user_id,orders,sts)
+			SELECT  DISTINCT menu_id,cast(#{userId} as int),1,'1' FROM ld_role_menu_permission WHERE role_id in
+			<foreach collection="roleId" item="element" index="index" open="(" separator=","  close=")">
+		         cast(#{element} as int)
+		    </foreach>  	          
+	  </insert> -->
+	  
+	<!--   <delete id="deleteUserRoles" parameterType="java.lang.Integer">
+	  		DELETE FROM ld_user_roles WHERE user_id = #{userId}
+	  </delete> -->
+	<!--   <delete id="deleteUserMenus" parameterType="java.lang.Integer">
+	  		DELETE FROM ld_user_menu WHERE user_id = #{userId}
+	  </delete>
+	  <delete id="deleteUserPermissions" parameterType="java.lang.Integer">
+	  		DELETE FROM ld_user_permission WHERE user_id = #{userId}
+	  </delete> -->
+	  
+	  <delete id="deleteUserMenuPermissions" parameterType="java.lang.Integer">
+	  		DELETE FROM ld_user_permissions WHERE user_id = #{userId}
+	  </delete>
+	  
+	<!--   <select id="loadingAllPermissions" resultType="java.util.HashMap">
+	  		SELECT p_id, title, logo, sts, description, url
+ 			FROM tblpermission
+	  </select> -->
+
+	  
+	  <update id="editUseById" parameterType="kh.com.loan.domains.User">
+	  		UPDATE ld_user_info
+			   SET 
+			   	     user_code  = #{user_code}
+			   	   , full_name  = #{full_name}
+			   	   , gender     = #{gender}
+			   	   , phone_nm   = #{phone_nm}
+			   	   , email      = #{email}
+			   	   , address    = #{address}
+			   	   , username   = #{username}
+			   	   , password   = #{password}
+			   	   , sts        = #{sts}
+			   	   , photo      = #{photo}
+			   	   , modify_by  = #{modify_by}
+			   	   , modify_dt  = #{modify_dt}
+			   	   , action     = #{action}
+			 WHERE user_id = #{user_id};
+	  </update>
+	  <select id="loadingUserIdMax" resultType="java.lang.Integer">
+	  		SELECT 
+	  			COUNT(*) AS tt
+	  		FROM ld_user_info
+	  </select>
+	  <select id="loadUserByCondition" resultMap="userResult" parameterType="java.util.HashMap">
+    	SELECT 
+    		  user_id     as user_id
+    		, com_id      as com_id
+    		, user_code   as user_code
+    		, full_name   as user_full_name
+    		, gender      as user_gender
+    		, phone_nm    as user_phone_nm
+    		, email       as user_email
+    		, address     as user_address
+    		, username    as user_username
+    		, password    as user_password
+    		, modify_by   as user_modify_by
+    		, modify_dt   as user_modify_dt
+    		, photo       as user_photo
+    		, sts         as user_sts
+		  FROM ld_user_info
+		  WHERE 1=1	AND sts != '9'
+		  <if test="userId != null and userId !=''">
+		  	  AND user_id = cast(#{userId} as int)
+		  </if>
+		   <if test="userName != null and userName !=''">
+		  	  AND username = #{userName}
+		  </if>
+		   <if test="password != null and password !=''">
+		  	  AND password = #{password}
+		  </if>
+	  </select>
+	    <select id="loadUserByConditionByUserId" resultMap="userResult" parameterType="kh.com.loan.domains.User">
+    	SELECT
+    		  user_id      as user_id
+    		, com_id      as com_id
+    		, user_code   as user_code
+    		, full_name   as user_full_name
+    		, gender      as user_gender
+    		, phone_nm    as user_phone_nm
+    		, email       as user_email
+    		, address     as user_address
+    		, modify_by   as user_modify_by
+    		, modify_dt   as user_modify_dt
+    		, photo       as user_photo
+    		, sts         as user_sts
+		  FROM ld_user_info
+		  WHERE 1=1	AND sts != '9' and user_id = #{user_id } and com_id = #{company.com_id}
+	  </select>
+	<!--   <select id="loadingAllPermission" resultType="java.util.HashMap" parameterType="java.lang.Integer">
+		  	select up.user_id,p.p_id,p.title,up.sts,p.url,p.logo
+		  	from tblpermission p left join tbluser_permission up on p.p_id=up.p_id
+		  	where up.user_id = #{userId}
+	  </select> -->
+<!-- 	  <select id="getGrantedPermission" resultMap="kh.com.loan.mappers.PermissionMapper.permissionMap" parameterType="java.lang.Integer">
+		  	SELECT distinct
+			      lp.per_id
+			     ,lp.name       per_name
+			     ,lp.name_id    per_name_id
+			     ,lp.http_path  per_http_path
+			     ,lp.sts        per_sts
+			     ,lup.menu_id
+			FROM ld_user_info lu,ld_user_permissions lup,ld_permissions_info lp
+			WHERE lu.user_id=lup.user_id
+			   and lup.per_id=lp.per_id
+			   and  lu.user_id = #{userId} and lup.sts != '9'
+	  </select> -->
+	 <!--   <select id="getGrantedAuthority" resultType="kh.com.loan.domains.Role" parameterType="java.lang.Integer">
+		  	select distinct
+			      lr.role_id,
+			      lr.role_name,
+			      lr.full_name,
+			      lr.r_sts,
+			      lr.com_id			      
+			from ld_user_info lu,ld_user_permissions lup,ld_roles_info lr
+			where  lu.user_id = lup.user_id 
+			   and lr.role_id = lup.role_id
+			   and lu.user_id = #{userId}
+	  </select> -->
+	  <!--  <select id="getAllMenu" resultType="kh.com.loan.domains.Menu" parameterType="java.lang.Integer">
+		  	SELECT  distinct
+			        lm.menu_id
+			      , lm.menu_name
+			      , icon
+			      , url
+			      , orders
+			FROM ld_user_info lu,ld_user_permissions lup,ld_menu_info lm
+			WHERE lu.user_id=lup.user_id
+			    and lup.menu_id=lm.menu_id
+			    and lu.user_id=#{userId}
+			ORDER BY lm.menu_name,orders		  	
+	  </select> -->
+	  
+	 <!--  <insert id="insertOrUpdateUserInformation" parameterType="java.util.HashMap">
+	  		  	INSERT INTO tbluser_permission(
+			            user_id, p_id, arrange, sts)
+			    VALUES (cast(#{userId} as int), cast(#{pId} as int), cast(#{order} as int), #{sts})
+			    ON CONFLICT (user_id,p_id) DO UPDATE SET sts = #{sts},arrange = cast(#{order} as int)
+	  </insert> -->
+	<!--   
+	  <select id="getAllRolesInCompany" resultType="kh.com.loan.domains.Role" parameterType="java.lang.Integer">
+	  		select 
+			      lr.role_id,
+			      lr.role_name
+			from  ld_company_info lc, ld_roles_info lr
+			where  lc.com_id = lr.com_id
+			   and lr.com_id = #{comId}
+	  </select> -->
+	  
+	 
+	  
+</mapper>

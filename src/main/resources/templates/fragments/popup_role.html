@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Insert title here</title>
+<meta charset="utf-8">
+
+</head>
+<body>
+<!-- popup form -->
+<div class="alert_wrap frm" id="popup_role" style="display:none;" th:fragment="popup_role">
+	
+	<div class="alert_inner">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">
+			<!-- table input popup -->
+			<div class="tbl_input_pop">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:150px;">
+					<col>
+					<col>
+					<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th><div>នាយកដ្ឋាន(ឈ្មោះកាត់)</div></th>
+							<td colspan="3"><div>
+									
+									<input type="text" value="" name="" id="role_name" placeholder="" required="required" maxlength="50">
+							</div></td>
+						</tr>					
+
+						<tr style="display:;" id="">
+							<th><div>ឈោ្មះនាយកដ្ឋាន(ឈ្មោះពេញ)</div></th>
+							<td colspan="3"><div>
+							<input type="text" value="" name="" id="full_names" placeholder="" required="required" maxlength="50">
+							</div></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			<!-- table input dot -->
+				<div class="tbl_input_pop" id="user_infor" style="padding: 0px;">
+					<div class="tasks_wrap">					
+					<!-- main_menu -->
+				    <div class="main_menu" style="position: relative;top:0px;margin: 0;">
+						 <ul style="margin: 0px;"> 											
+							<li  style="border-radius: 0px;width: 115px;border: 2px solid #fff;" >
+								<div style="height:100px;">
+									<a href="javascript:">
+										<img alt="loaner" th:src="@{img/logo/personal-loan-icon.png}" width="100" height="100">
+									</a>
+								 </div>
+								 <a href="javascript:">
+								 	<span>បញ្ចីអ្នកខ្ចី</span>
+								</a>
+							</li>
+						 
+							<li style="border-radius: 0px;width: 115px;border: 2px solid #fff;" >
+								<div style="height:100px;">
+									<a href="javascript:">
+										<img alt="loaner" th:src="@{img/logo/money-icon.png}" width="100" height="100">
+									</a>
+								 </div>
+								 <a href="javascript:">
+								 	<span>បញ្ចីកម្ចី</span>
+								</a>
+							</li>
+							<!--
+							<li style="border:none !important;" th:each="permission : ${#authentication.principal.permissions}" th:if="${permission.title == ''}">
+								<div style="height:100px;">
+									<a th:href="@{/missing-payment}">
+										<img alt="loaner" th:src="@{img/logo/payment.png}">
+									</a>
+								 </div>
+								 <a th:href="@{/missing-payment}">
+								 	<span>បញ្ចីអ្នក<br>ខកខាន<br>បង់ប្រាក់</span>
+								</a>
+							</li>
+							
+							<li style="border:none !important;" th:each="permission : ${#authentication.principal.permissions}" th:if="${permission.title == ''}">
+								<div style="height:100px;">
+									<a th:href="@{/setting}">
+										<img alt="loaner" th:src="@{img/logo/settings-icon.png}">
+									</a>
+								 </div>
+								 <a th:href="@{/setting}">
+								 	<span>កំណត់<br>គោល<br>ការណ៍</span>
+								</a>
+							</li> -->
+						
+						</ul> 
+					</div> 
+					<!-- //main_menu -->
+				</div>
+				</div>
+				<!-- //table input dot -->
+				
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_save">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>	
+	
+</div>
+<!-- //popup form -->
+<div class="alert_wrap frm" id="popup_role_information" style="display:none;" th:fragment="popup_role_information">
+	<div class="alert_inner" style="top:40% !important;width: 620px;">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានអ្នកប្រើប្រាស់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">
+			<!-- table input popup -->
+			<div class="tbl_input_pop" style="padding-top: 0px !important;">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:150px;">
+					<col>
+					<col>
+					<col>
+					</colgroup>
+					<tbody>
+				
+						<tr style="display:;" id="department">
+							<th align="left"><div>Department</div></th>
+							<td colspan="3"><div>
+								<label><input type="checkbox" >HR Human Resource</label> 
+								<label><input type="checkbox" >HR Human Resource</label> 
+							</div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+				
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm" id="btn_view_edit">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel" >បោះបង់</a>
+		</div>
+	</div>	
+	
+</div>
+<!-- //popup form -->
+
+</body>
+</html>

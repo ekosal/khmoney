@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+   <head lang="en" th:replace="fragments/head :: head"><meta charset="utf-8"></head>
+   <style>
+   			.navbar-right{
+				margin:0px;
+				padding:0;
+				float:right;
+				width:100%;
+				height: 100%;
+				list-style:none;
+			}
+			.navbar-right>li{
+				display: inline-block;
+			    position: relative;
+			    float: right;
+			    margin: 0px;
+			    padding: 0px;
+			    height: 100%;
+			}
+			.navbar-right li a{
+				padding: 18px 15px 15px;
+			    display: block;
+			    color: #515356!important;
+			    height: 100%;
+			}
+			.navbar-right li a img.profile{
+				border-radius: 50%;
+				vertical-align: middle;
+			}
+			.navbar-right>li>a:hover{
+			    background: #D9DEE4;
+			}
+			.dropdown-menu{
+				position:absolute;
+				border:1px solid #D9DEE4;
+				background-color:#fff;
+				width:300px;
+				min-width:160px;
+				right:0px;
+				left:auto;
+				z-index:9998;
+				top:100%;
+				border-radius:4px;
+				border-top-left-radius:0;
+				border-top-right-radius:0;
+				display:block;
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			.dropdown-menu li{
+				position:relative;		  
+				
+			}
+			.dropdown-profile{
+				width:200px;
+			}
+			.dropdown-profile>li>a:hover{
+				background-color: #F7F7F7 !important;
+			}
+			.dropdown-profile li a {
+			    padding: 9px 15px 9px;
+			}
+			.pull-right {
+			   margin-top:5px;
+			}
+   </style>
+   <body class="lnb_bg">
+<div class="wrap">
+
+	<!-- header -->
+	<div lang="en" th:replace="/header :: header"></div>
+	<!-- //header -->
+
+	<!-- Container -->
+	<div class="container" layout:fragment="content">
+		
+		<!-- content wrap -->
+		<div class="content">
+			<div class="cnt_wrap" >
+				<!-- title_wrap -->
+				<div class="tit_wrap cboth">
+					<div class="f_left">
+						<div class="tit_h3">
+							<ul>
+								<li><a th:href="@{/}">ទំព័រដើម</a></li>
+								<li><a th:href="@{/loaner}">បញ្ចីអ្នកខ្ចី</a></li>
+								<li><a th:href="@{loan}">បញ្ចីកម្ចី</a></li>
+								<li><a th:href="@{/missing-payment}">បញ្ចីអ្នកខកខានបង់ប្រាក់</a></li>
+								<li><a th:href="@{/setting}">កំណត់គោលការណ៍</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- //title_wrap -->
+
+				<div class="tasks_wrap">
+					<!-- title_wrap -->
+					<div class="tit_wrap cboth">
+						<div class="t_center">
+							<div class="tit_h3"><h3>ទំព័រដើម</h3></div>
+						</div>
+					</div>
+					<!-- //title_wrap -->
+
+					<!-- main_menu -->
+					<div class="main_menu">
+						<ul>
+						    <li style="border:none !important;"><a th:href="@{/loaner}">
+								<img alt="loaner" th:src="@{img/logo/Status-wallet-open-icon.png}">
+								<span>ទឹកប្រាក់សរុប</span>
+							</a></li>
+							<li style="border:none !important;"><a th:href="@{/loaner}">
+								<img alt="loaner" th:src="@{img/logo/User-2-icon.png}">
+								<span>អ្នកប្រើប្រាស់</span>
+							</a></li>
+							<li style="border:none !important;"><a th:href="@{/loaner}">
+								<img alt="loaner" th:src="@{img/logo/personal-loan-icon.png}">
+								<span>បញ្ចីអ្នកខ្ចី</span>
+							</a></li>
+							
+							<li><a th:href="@{loan}">
+								<img alt="loaner" th:src="@{img/logo/money-icon.png}">
+								<span>បញ្ចីកម្ចី</span>
+							</a></li>
+							<li><a th:href="@{/missing-payment}">
+								<img alt="loaner" th:src="@{img/logo/payment.png}">
+								<span>បញ្ចីអ្នក<br>ខកខាន<br>បង់ប្រាក់</span></a></li>
+						
+							<li><a th:href="@{/setting}">
+								<img alt="loaner" th:src="@{img/logo/settings-icon.png}">
+								<span>កំណត់<br>គោល<br>ការណ៍</span>
+							</a></li>
+						</ul>
+					</div>
+					<!-- //main_menu -->
+				</div>
+			</div>
+		</div>
+		<!-- //content wrap -->
+	</div>
+	<!-- //Container -->	
+	<div lang="en" th:replace="fragments/footer :: footer"> </div>	
+</div>
+<input type="hidden" id="user_id">
+<div lang="en" th:replace="fragments/assets :: assets"></div>
+<script th:src="@{/js/layout.js}"></script>
+<div layout:fragment="asset"></div>
+<div lang="en" th:replace="fragments/employeeAdd :: popup_employee_edit"></div>
+<div lang="en" th:replace="fragments/employeeAdd :: popup_employee_change_password"></div>
+<div lang="en" th:replace="fragments/employeeAdd :: popup_employee_permission"></div>
+<!-- loading.... -->
+<div style="display:none;" id="loading">
+    <img th:src="@{/img/loading.gif}" alt="LAON" height="50" width="50">
+</div>
+</body>
+</html>

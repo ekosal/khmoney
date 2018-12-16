@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+
+
+
+
+<!-- popup form -->
+<div class="alert_wrap frm" style="display:none;" th:fragment="popup_loan_pay_only_rate" id="popup_loan_pay_only_rate">
+	<div class="alert_inner" style="width:620px;">
+		<div class="alert_tit">
+			<h1>បញ្ចូលពត័មានទឹកប្រាក់</h1>
+			<a href="javascript:" class="btn_close"><span class="blind">close</span></a>
+		</div>
+		<div class="aler_cnt" style="height: auto !important;padding-bottom: 0px !important;">
+			<!-- table input popup -->
+			<div class="tbl_input_pop">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:160px;">
+					<col>
+					<col style="width:100px;">
+					<col>
+					</colgroup>
+					<tbody>
+					    <tr>
+							<th><div>ប្រភេទប្រាក់</div></th>
+							<td colspan="3">
+								<div>
+									<label>                   <input type="radio" name="money_type" id="reils"    value="R" checked="checked" > ប្រាក់រៀល</label>&nbsp;&nbsp;&nbsp;&nbsp;
+									<label style="display:;"> <input type="radio" name="money_type" id="dollars"  value="D"  > ប្រាក់ដុលារ</label> 
+									
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th ><div>ទឹកប្រាក់សរុប</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" id="rate_total_money" placeholder=""></div></td>
+						</tr>
+							<tr>
+							<th><div>ការប្រាក់</div></th>
+							<td colspan="2">
+								<div>
+									<input type="text" value="" name="rate_rate" id="rate_rate" placeholder="">
+								</div>
+							</td>
+							<td>
+								<div>
+									<select name="rate_type" id="rate_type">
+										<option value="1"> ភាគរយ (%)</option>
+										<option value="2"> ទឹកប្រាក់(​៛ / $)</option>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+						<th><div>រយះពេលនៃការបង់ប្រាក់ម្ដងៗ</div></th>
+							<td colspan="3">
+								<div>
+								    <select style="width: 34%;" name="rate_type_payment" id="rate_type_payments">
+										<option data="1" value="1"> ថ្ងៃ</option>
+										<option data="7" value="2"> អាទិត្យ</option>
+										<option data="30" value="3" selected="selected"> ខែ</option>
+										<option data="365" value="4"> ឆ្នាំ</option>
+									</select>
+								    <!-- <input type="text" value="" name="" style="width: 55%;" placeholder=""​​ id="count_day" maxlength="2"> -->
+									<select style="width: 55%;"" name="rate_count_day" id="rate_count_day">
+										<option  value="1"> 1 ថ្ងៃ</option>
+										<option  value="2"> 2 ថ្ងៃ</option>
+										<option  value="3"> 3 ថ្ងៃ</option>
+										<option  value="4"> 4 ថ្ងៃ</option>
+										<option  value="5"> 5 ថ្ងៃ</option>
+									</select>
+									
+									
+								</div>
+							</td>
+						</tr>						
+						<tr>
+							<th><div>ចំនួនដងការបង់ប្រាក់</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder=""​​ id="rate_payment_time"></div></td>
+						</tr>
+						<tr>
+							<th><div>បរិច្ឆេទបើកប្រាក់</div></th>
+							<td colspan="3"><div><input type="text" value="" name="" placeholder="" readonly="readonly"​​ id="popup_start_date" style="width: 75%;margin-right:3px;"></div></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			<!-- //table input popup -->
+			<div class="tbl_input_pop mgt10 t_line1" style="padding: 10px 30px;height: auto !important;">
+				<table summary="">
+					<caption></caption>
+					<colgroup>
+					<col style="width:100px;">
+					<col>
+					<col style="width:100px;">
+					<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th><div>ភ្នាក់ងារ</div></th>
+							<td><div>
+									<input type="text" value="" name="" placeholder="" readonly="readonly"​​ id="popup_agent" style="width: 75%;margin-right:3px;">
+							</div></td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>		
+
+		</div>
+		<div class="t_line">
+			<a href="javascript:" class="btn_confirm">បន្ថែម</a>
+			<a href="javascript:" class="btn_cancel">បោះបង់</a>
+		</div>
+	</div>	
+</div>
+<!-- //popup form -->
+
+<!-- //popup form -->
+</body>
+</html>
