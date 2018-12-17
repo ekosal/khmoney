@@ -17,7 +17,19 @@ import kh.com.loan.domains.User;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider{
 
-	@Autowired
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean supports(Class<?> authentication) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	/*@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
@@ -62,6 +74,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	public boolean supports(Class<?> authentication) {
 		// TODO Auto-generated method stub
 		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
-	}
+	}*/
 
 }
