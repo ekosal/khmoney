@@ -38,7 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 			throw new UsernameNotFoundException("Please input password!");
 		}
 		
-		User user = new User();//(User) customUserDetailsService.loadUserByUsername(username);
+		User user = (User) customUserDetailsService.loadUserByUsername(username);
 		
 
 		
