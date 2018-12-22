@@ -38,13 +38,13 @@ public class KHController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(!auth.getPrincipal().equals("anonymousUser")){			
 			User user = (User) auth.getPrincipal();
-			for (Role role : user.getRoles()) {
+			/*for (Role role : user.getRoles()) {
 				if (role.getRole_name().equals("ROLE_ADMIN")) {
 					SecurityContextHolder.clearContext();
 					return "login";
 				}
-			}
-			
+			}*/
+			return "login";
 			
 		}
 		return "index";
@@ -57,7 +57,7 @@ public class KHController {
 			User user = (User) auth.getPrincipal();
 			System.out.println(user.getFull_name());
 			model.addAttribute("user",user);
-			return "redirect:/khmoney/";
+			return "redirect:/";
 		}
 		return "login";
 	}
