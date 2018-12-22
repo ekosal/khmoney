@@ -35,15 +35,15 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		String targetUrl = determineTargetUrl(authentication);		
+	/*	String targetUrl = determineTargetUrl(authentication);		
 		
 		User user = (User) authentication.getPrincipal();
 		if (user.getRoles().size() < 1 ) {
 			SecurityContextHolder.clearContext();
-		}
+		}*/
 		
 		ObjectMapper mapper = new ObjectMapper();	
-		Message msg = new Message("0000",targetUrl);
+		Message msg = new Message("0000","/");
 		String str = mapper.writeValueAsString(msg);
 		response.getWriter().print(str);
 		response.getWriter().flush();
